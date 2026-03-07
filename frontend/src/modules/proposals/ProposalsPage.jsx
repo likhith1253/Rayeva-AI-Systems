@@ -92,7 +92,17 @@ export default function ProposalsPage() {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.detail || 'Failed to generate proposal');
+                let errorMessage = 'Failed to generate proposal';
+                if (errorData.detail) {
+                    if (Array.isArray(errorData.detail)) {
+                        errorMessage = errorData.detail.map(err => err.msg).join(', ');
+                    } else if (typeof errorData.detail === 'string') {
+                        errorMessage = errorData.detail;
+                    } else {
+                        errorMessage = JSON.stringify(errorData.detail);
+                    }
+                }
+                throw new Error(errorMessage);
             }
 
             const data = await response.json();
@@ -270,8 +280,8 @@ export default function ProposalsPage() {
                                         <label
                                             key={priority}
                                             className={`cursor-pointer inline-flex items-center px-4 py-2 rounded-lg border text-sm font-medium transition-colors ${priorities.includes(priority)
-                                                    ? 'bg-green-50 border-green-200 text-green-700'
-                                                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
+                                                ? 'bg-green-50 border-green-200 text-green-700'
+                                                : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
                                                 }`}
                                         >
                                             <input
