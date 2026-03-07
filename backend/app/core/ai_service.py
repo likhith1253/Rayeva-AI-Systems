@@ -61,6 +61,22 @@ async def call_claude(
     """
     if not settings.ANTHROPIC_API_KEY or settings.ANTHROPIC_API_KEY == "sk-ant-api03-xxxxxxxxxxxxxxxx":
         logger.info("Using mocked AI response for testing since real API key is missing.")
+        
+        # Try to parse metrics from the prompt for dynamic impact statement
+        psg = "0"
+        cak = "0"
+        trees = "0"
+        import re
+        psg_match = re.search(r'Plastic Saved\s*\(grams\):\s*([\d\.]+)', prompt)
+        cak_match = re.search(r'Carbon Avoided\s*\(kg\):\s*([\d\.]+)', prompt)
+        trees_match = re.search(r'Trees Equivalent:\s*([\d\.]+)', prompt)
+        
+        if psg_match: psg = psg_match.group(1)
+        if cak_match: cak = cak_match.group(1)
+        if trees_match: trees = trees_match.group(1)
+        
+        impact_stmt = f"This order saved {psg}g of plastic and avoided {cak}kg of carbon emissions through sustainable product choices. It's equivalent to planting {trees} trees."
+
         # Return a mock response
         mock_json_content = {
             "proposed_products": [
@@ -101,7 +117,8 @@ async def call_claude(
                     "why_recommended": "Ensures a safe, chemical-free working environment for employees."
                 }
             ],
-            "impact_summary": "By transitioning to these sustainable alternatives, we take a definitive step toward our plastic reduction and employee wellness goals. Replacing single-use plastics and conventional paper products significantly lowers our office carbon footprint and provides tangible ESG talking points. Furthermore, providing eco-conscious pantry and restroom supplies reinforces a culture of care and sustainability."
+            "impact_summary": "By transitioning to these sustainable alternatives, we take a definitive step toward our plastic reduction and employee wellness goals. Replacing single-use plastics and conventional paper products significantly lowers our office carbon footprint and provides tangible ESG talking points. Furthermore, providing eco-conscious pantry and restroom supplies reinforces a culture of care and sustainability.",
+            "impact_statement": impact_stmt
         }
         return {
             "content": mock_json_content,
