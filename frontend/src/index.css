@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base Styles ──────────────────────────────────────────────── */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #052e16 50%, #0f172a 100%);
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* ── Glassmorphism Card ───────────────────────────────────────── */
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-card-light {
+    @apply bg-white/[0.07] backdrop-blur-xl border border-white/[0.12] rounded-2xl;
+  }
+
+  /* ── Input Styles ───────────────────────────────────── */
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.12]
+           text-white placeholder-gray-500 transition-all duration-300
+           focus:outline-none focus:border-primary-400/50 focus:ring-2 focus:ring-primary-400/20
+           focus:bg-white/[0.08];
+  }
+
+  .input-field:hover {
+    @apply border-white/20 bg-white/[0.08];
+  }
+
+  /* ── Badge / Pill Styles ───────────────────────────── */
+
+  .badge-category {
+    @apply inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold
+           bg-primary-500/20 text-primary-300 border border-primary-500/30;
+  }
+
+  .badge-sustainability {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+           bg-accent-500/15 text-accent-300 border border-accent-500/25
+           transition-all duration-200;
+  }
+
+  .badge-sustainability:hover {
+    @apply bg-accent-500/25 border-accent-400/40 scale-105;
+  }
+
+  .badge-tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+           bg-white/[0.06] text-gray-300 border border-white/[0.1]
+           transition-all duration-200;
+  }
+
+  .badge-tag:hover {
+    @apply bg-white/[0.1] border-white/20;
+  }
+
+  /* ── Button Styles ─────────────────────────────────── */
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold text-white
+           bg-gradient-to-r from-primary-600 to-accent-600
+           hover:from-primary-500 hover:to-accent-500
+           transition-all duration-300 transform hover:scale-[1.02]
+           shadow-lg hover:shadow-glow-lg
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+           disabled:hover:shadow-lg;
+  }
+
+  /* ── Shimmer Loading ───────────────────────────────── */
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+}
+
+/* ── Scrollbar Styling ────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
