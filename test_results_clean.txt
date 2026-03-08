@@ -1,0 +1,12 @@
+﻿--- Running Support Bot End-to-End Tests ---
+FAIL | Test 1 - Order Status | Expecting value: line 1 column 1 (char 0)
+FAIL | Test 2 - Return Policy | Expecting value: line 1 column 1 (char 0)
+FAIL | Test 3 - Context Memory | Expecting value: line 1 column 1 (char 0)
+FAIL | Test 4 - Refund/Legal Escalation | Expecting value: line 1 column 1 (char 0)
+FAIL | Test 5 - Angry/Manager Escalation | Expecting value: line 1 column 1 (char 0)
+FAIL | Test 6 - General Inquiry | Expecting value: line 1 column 1 (char 0)
+FAIL | Test 7 - History Session 001 | Messages: 10, Has_esc: False
+FAIL | Test 8 - History Session 003 Escalated | 
+FAIL | Test 9 - Escalation List | Found 003: False, Found 004: False
+PASS | Test 10 - Clear Session | {'cleared': True, 'session_id': 'verify-session-005'}
+PASS | Test 11 - History Post-Clear | Messages: 0
