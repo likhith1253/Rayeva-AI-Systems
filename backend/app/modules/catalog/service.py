@@ -59,6 +59,42 @@ def validate_sustainability_filters(filters: list) -> List[str]:
     return valid
 
 
+def keyword_fallback_filters(name: str, description: str) -> List[str]:
+    """
+    Fallback keyword-based filter detection.
+    Look at the product name and description combined (lowercase).
+    """
+    text = (name + " " + description).lower()
+    detected = []
+    
+    keywords = {
+        "organic": "organic",
+        "bamboo": "plastic-free",
+        "recycled": "recycled-materials",
+        "compost": "compostable",
+        "vegan": "vegan",
+        "plastic-free": "plastic-free",
+        "plastic free": "plastic-free",
+        "biodegradable": "biodegradable",
+        "zero waste": "zero-waste",
+        "zero-waste": "zero-waste",
+        "natural": "organic",
+        "eco": "biodegradable",
+        "reusable": "reusable",
+        "cruelty": "cruelty-free",
+        "fair trade": "fair-trade",
+        "fairtrade": "fair-trade",
+        "local": "locally-sourced",
+        "locally": "locally-sourced",
+    }
+    
+    for kw, filter_val in keywords.items():
+        if kw in text:
+            detected.append(filter_val)
+            
+    return list(set(detected))  # No duplicates
+
+
 def post_process_ai_response(data: dict) -> dict:
     """
     Post-process the AI response to enforce constraints:
@@ -74,7 +110,17 @@ def post_process_ai_response(data: dict) -> dict:
     
     # Validate sustainability filters
     raw_filters = data.get("sustainability_filters", [])
-    data["sustainability_filters"] = validate_sustainability_filters(raw_filters)
+    
+    # Add fallback keyword detection
+    name = data.get("product_name", "")
+    description = data.get("description", "")
+    fallback_filters = keyword_fallback_filters(name, description)
+    
+    # Merge and deduplicate
+    combined_filters = list(set(raw_filters + fallback_filters))
+    
+    # Final validation against whitelist
+    data["sustainability_filters"] = validate_sustainability_filters(combined_filters)
 
     # Ensure seo_tags is a list of strings, capped at 10
     raw_tags = data.get("seo_tags", [])
@@ -136,6 +182,12 @@ async def categorize_product(
             parsed_data = ai_result["content"]
 
         # Post-process the response
+        # Inject product details for keyword fallback if missing in parsed_data
+        if "product_name" not in parsed_data:
+            parsed_data["product_name"] = request.product_name
+        if "description" not in parsed_data:
+            parsed_data["description"] = request.description
+            
         parsed_data = post_process_ai_response(parsed_data)
 
         # Create and save the catalog entry

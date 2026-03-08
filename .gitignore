@@ -50,3 +50,36 @@ dev.db
 .vscode/
 *.swp
 *.swo
+
+# Database files
+*.db
+dev.db
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Temporary output files
+*.txt
+!README.md
+!scripts/README.md
+!.env.example
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Environment
+.env
+
+# Temporary scripts
+screenshots.py
+retake_screenshots.py

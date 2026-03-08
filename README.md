@@ -21,21 +21,6 @@ Rayeva AI Systems is a full-stack sustainable commerce platform that uses AI to 
 - [4. Project Structure](#4-project-structure)
 - [5. Modules](#5-modules)
 - [6. AI Prompt Design](#6-ai-prompt-design)
-- [7. Technical Requirements Compliance](#7-technical-requirements-compliance)
-- [8. Setup and Installation](#8-setup-and-installation)
-- [9. API Reference](#9-api-reference)
-- [10. Evaluation Criteria Mapping](#10-evaluation-criteria-mapping)
-- [11. Design Decisions](#11-design-decisions)
-- [12. Future Improvements](#12-future-improvements)
-- [13. Tech Stack](#13-tech-stack)
-- [14. License](#14-license)
-
-## 3. Architecture Overview
-
-Rayeva AI Systems is implemented as a monorepo with a React frontend and a FastAPI backend, where each business module is organized using a consistent router-service-prompts-schemas-models pattern. The architecture separates concerns cleanly: routers expose HTTP contracts, services enforce deterministic business logic, prompts define model instructions, and shared core utilities (`ai_service.py`, `logger.py`, `database.py`) provide centralized AI invocation, observability, and persistence. All four modules share the same database session lifecycle and prompt logging pipeline, which creates consistent reliability behavior across categorization, proposals, impact reporting, and support workflows while keeping module-specific logic isolated and maintainable.
-
-```text
-+-----------------------------------------------------------------+
 |                        RAYEVA AI SYSTEMS                        |
 |                     Sustainable Commerce Platform                |
 +-----------------------------------------------------------------+
