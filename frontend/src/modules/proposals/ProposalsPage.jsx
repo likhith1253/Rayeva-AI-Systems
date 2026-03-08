@@ -28,7 +28,7 @@ export default function ProposalsPage() {
 
     const fetchHistory = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/proposals/history');
+            const response = await fetch('/api/proposals/history');
             if (!response.ok) throw new Error('Failed to fetch history');
             const data = await response.json();
             setHistory(data);
@@ -76,7 +76,7 @@ export default function ProposalsPage() {
         setProposal(null);
 
         try {
-            const response = await fetch('http://localhost:8000/api/proposals/generate', {
+            const response = await fetch('/api/proposals/generate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ export default function ProposalsPage() {
         setProposal(null);
 
         try {
-            const response = await fetch(`http://localhost:8000/api/proposals/${id}`);
+            const response = await fetch(`/api/proposals/${id}`);
             if (!response.ok) throw new Error('Failed to fetch proposal details');
             const data = await response.json();
             setProposal(data);
@@ -148,7 +148,7 @@ export default function ProposalsPage() {
         if (!proposal) return;
 
         try {
-            const response = await fetch(`http://localhost:8000/api/proposals/${proposal.id}/export`, {
+            const response = await fetch(`/api/proposals/${proposal.id}/export`, {
                 method: 'POST'
             });
 

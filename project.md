@@ -42,7 +42,7 @@ It contains 4 AI-powered modules:
                               | API Calls
 +-------------------------------------------------------------+
 |                      Anthropic Claude API                   |
-|                   (claude-sonnet-4-20250514)                |
+|                   (gemini-2.0-flash)                        |
 +-------------------------------------------------------------+
 ```
 
@@ -172,7 +172,7 @@ rayeva-ai-systems/
 
 ## 6. AI Prompt Design Strategy
 
-For **Anthropic Claude API (claude-sonnet-4-20250514)**:
+For **Google Gemini API**:
 1. **System Prompts:** Define deep contexts. (e.g., "You are an expert B2B proposal writer specializing in sustainable commerce...").
 2. **Chain-of-Thought (CoT):** Instruct the model to enclose its reasoning inside `<thinking>` tags before delivering the `<output>`. This improves logic and allows us to trace its decision-making.
 3. **Few-Shot Examples:** Provide 1-2 examples of inputs mapped to exact acceptable JSON/Markdown outputs in the prompt.
@@ -187,7 +187,7 @@ PORT=8000
 DEBUG=True
 
 # API Keys
-ANTHROPIC_API_KEY=sk-ant-api03-xxxx
+GEMINI_API_KEY=your_gemini_api_key
 
 # Database
 DATABASE_URL=sqlite:///./dev.db

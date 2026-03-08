@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import CatalogPage from './modules/catalog/CatalogPage'
 import ProposalsPage from './modules/proposals/ProposalsPage'
 import ImpactPage from './modules/impact/ImpactPage'
+import SupportPage from './modules/support/SupportPage'
 
 function App() {
     const [currentModule, setCurrentModule] = useState('proposals')
@@ -41,6 +42,12 @@ function App() {
                         >
                             Impact Reports
                         </button>
+                        <button
+                            onClick={() => setCurrentModule('support')}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${currentModule === 'support' ? 'bg-primary-500/10 text-primary-400 border-primary-500/20' : 'bg-transparent text-gray-500 border-transparent hover:text-gray-300'}`}
+                        >
+                            Support Bot
+                        </button>
                     </nav>
                 </div>
             </header>
@@ -50,6 +57,7 @@ function App() {
                 {currentModule === 'catalog' && <CatalogPage />}
                 {currentModule === 'proposals' && <ProposalsPage />}
                 {currentModule === 'impact' && <ImpactPage />}
+                {currentModule === 'support' && <SupportPage />}
             </main>
 
             {/* Footer */}

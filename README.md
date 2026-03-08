@@ -20,7 +20,7 @@ It currently features 4 AI-powered modules:
 * **Frontend:** React 18 + Tailwind CSS (Vite 5)
 * **Backend:** Python + FastAPI (async)
 * **Database:** SQLite (dev) / PostgreSQL (prod) via SQLAlchemy async
-* **AI Provider:** Anthropic Claude API (model `claude-sonnet-4-20250514`)
+* **AI Provider:** Google Gemini API (model `gemini-2.0-flash`)
 * **Logging:** Every AI interaction logged to `prompt_logs` DB table
 
 See [`project.md`](./project.md) for full architecture schemas, exact API protocols, and strict instructions on AI Prompt Design Strategies.
@@ -75,7 +75,7 @@ curl -X POST http://localhost:8000/api/catalog/categorize \
 ### 1. Prerequisites
 - Python 3.11+
 - Node.js 20+
-- Anthropic API Key (`claude-sonnet-4-20250514` access)
+- Google Gemini API Key
 
 ### 2. Environment Setup
 ```bash
@@ -85,7 +85,7 @@ cd Rayeva-AI-Systems
 
 # Create .env file from example
 cp .env.example .env
-# Edit .env and supply your ANTHROPIC_API_KEY
+# Edit .env and supply your GEMINI_API_KEY
 ```
 
 ### 3. Backend Setup
@@ -126,7 +126,7 @@ Vite app running at: `http://localhost:5173`
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `ANTHROPIC_API_KEY` | Your Anthropic API key | Required |
+| `GEMINI_API_KEY` | Your Gemini API key | Required |
 | `DATABASE_URL` | Database connection string | `sqlite+aiosqlite:///./dev.db` |
 | `ENVIRONMENT` | `development` or `production` | `development` |
 | `LOG_LEVEL` | Logging level | `INFO` |

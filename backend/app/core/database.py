@@ -52,6 +52,7 @@ async def init_db():
     import backend.app.core.logger  # noqa: F401 — registers PromptLog
     import backend.app.modules.catalog.models  # noqa: F401 — registers CatalogEntry
     import backend.app.modules.proposals.models  # noqa: F401 — registers Proposal
+    import backend.app.modules.support.models  # noqa: F401 — registers Support models
 
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)

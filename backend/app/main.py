@@ -11,6 +11,7 @@ from backend.app.core.config import get_settings
 from backend.app.modules.catalog.router import router as catalog_router
 from backend.app.modules.proposals.router import router as proposals_router
 from backend.app.modules.impact.router import router as impact_router
+from backend.app.modules.support.router import router as support_router
 
 
 settings = get_settings()
@@ -50,6 +51,7 @@ app.add_middleware(
 app.include_router(catalog_router)
 app.include_router(proposals_router)
 app.include_router(impact_router)
+app.include_router(support_router)
 
 
 @app.get("/", tags=["Health"])

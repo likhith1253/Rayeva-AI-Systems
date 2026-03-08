@@ -13,13 +13,13 @@ class Settings(BaseSettings):
     DEBUG: bool = True
 
     # API Keys
-    ANTHROPIC_API_KEY: str = ""
+    GEMINI_API_KEY: str = ""
 
     # Database
     DATABASE_URL: str = "sqlite+aiosqlite:///./dev.db"
 
     # AI Model
-    AI_MODEL: str = "claude-sonnet-4-20250514"
+    AI_MODEL: str = "gemini-2.0-flash"
     AI_MAX_TOKENS: int = 2048
 
     # Logging

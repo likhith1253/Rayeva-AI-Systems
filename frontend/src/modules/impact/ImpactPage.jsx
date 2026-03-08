@@ -18,7 +18,7 @@ export default function ImpactPage() {
 
     const fetchHistory = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/impact/history');
+            const response = await fetch('/api/impact/history');
             if (!response.ok) throw new Error('Failed to fetch history');
             const data = await response.json();
             setHistory(data);
@@ -66,7 +66,7 @@ export default function ImpactPage() {
                 weight_grams: parseFloat(p.weight_grams)
             }));
 
-            const response = await fetch('http://localhost:8000/api/impact/generate', {
+            const response = await fetch('/api/impact/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -101,7 +101,7 @@ export default function ImpactPage() {
         setReport(null);
 
         try {
-            const response = await fetch(`http://localhost:8000/api/impact/${id}`);
+            const response = await fetch(`/api/impact/${id}`);
             if (!response.ok) throw new Error('Failed to fetch report details');
 
             const data = await response.json();
